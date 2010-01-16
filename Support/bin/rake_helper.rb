@@ -78,7 +78,7 @@ HTML
 $stdout.flush
 
 output = `#{command}`
-lines = output.to_a
+lines = output.send(output.respond_to?(:lines) ? :lines : :to_s).to_a
 # Remove the test output from rake output
 lines.pop if lines[-1] =~ /0 tests, 0 assertions, 0 failures, 0 errors/
 
